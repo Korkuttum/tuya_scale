@@ -1,0 +1,11 @@
+{
+  "domain": "tuya_scale",
+  "name": "Tuya Smart Scale",
+  "config_flow": true,
+  "documentation": "",
+  "dependencies": [],
+  "codeowners": ["@Korkuttum"],
+  "requirements": ["requests>=2.25.0"],
+  "version": "1.0.0",
+  "iot_class": "cloud_polling"
+}
