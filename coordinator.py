@@ -6,6 +6,7 @@ import hmac
 import hashlib
 import requests
 import json
+import asyncio
 from datetime import datetime, timedelta
 
 from homeassistant.core import HomeAssistant
@@ -27,8 +28,6 @@ from .const import (
     CONF_REGION,
     ERROR_AUTH,
     ERROR_CONN,
-    CURRENT_USER,
-    CURRENT_TIME,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -48,6 +47,7 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
             _LOGGER,
             name=DOMAIN,
             update_interval=SCAN_INTERVAL,
+            update_method=self._async_update_with_retry
         )
         
         self.access_id = config_entry.data[CONF_ACCESS_ID]
@@ -56,6 +56,8 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
         self.region = config_entry.data[CONF_REGION]
         self.api_endpoint = REGIONS[self.region]
         self.access_token = None
+        self._retry_count = 0
+        self._max_retries = 3
 
     def _calculate_sign(self, t: str, path: str, access_token: str = None) -> str:
         """Calculate signature for API requests."""
@@ -139,8 +141,29 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
             return True
             
         except requests.RequestException as err:
-            _LOGGER.error("Connection error: %s", str(err))
+            _LOGGER.error("Connection error during token request: %s", str(err))
             raise UpdateFailed(ERROR_CONN)
+
+    async def _async_update_with_retry(self):
+        """Update data with retry mechanism."""
+        try:
+            self._retry_count = 0
+            return await self._async_update_data()
+        except UpdateFailed as err:
+            self._retry_count += 1
+            _LOGGER.warning(
+                "Update failed (attempt %s of %s): %s",
+                self._retry_count,
+                self._max_retries,
+                str(err)
+            )
+            
+            if self._retry_count < self._max_retries:
+                self.access_token = None
+                await asyncio.sleep(2)  # Short wait before retry
+                return await self._async_update_data()
+            else:
+                raise
 
     async def _async_update_data(self):
         """Fetch data from Tuya API."""
@@ -180,7 +203,8 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
             if response.status_code == 401:
                 _LOGGER.info("Token expired, refreshing...")
                 self.access_token = None
-                return await self._async_update_data()
+                await self.async_refresh()
+                return self.data
             
             if response.status_code != 200:
                 raise UpdateFailed(f"HTTP error {response.status_code}")
@@ -191,7 +215,8 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
                 if 'token' in msg.lower():
                     _LOGGER.info("Token invalid, refreshing...")
                     self.access_token = None
-                    return await self._async_update_data()
+                    await self.async_refresh()
+                    return self.data
                 raise UpdateFailed(f"API error: {msg}")
             
             data = {}
@@ -238,4 +263,9 @@ class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
             
         except requests.RequestException as err:
             _LOGGER.error("Connection error: %s", str(err))
-            raise UpdateFailed(ERROR_CONN)
+            self.access_token = None
+            raise UpdateFailed(f"{ERROR_CONN}: {str(err)}")
+        except Exception as err:
+            _LOGGER.error("Unexpected error: %s", str(err))
+            self.access_token = None
+            raise UpdateFailed(f"Unexpected error: {str(err)}")
