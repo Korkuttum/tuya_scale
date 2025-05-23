@@ -7,7 +7,7 @@ from homeassistant.const import (
 
 DOMAIN = "tuya_scale"
 PLATFORMS = [Platform.SENSOR]
-SCAN_INTERVAL = timedelta(minutes=5)
+SCAN_INTERVAL = timedelta(minutes=1)
 
 # Configuration
 CONF_ACCESS_ID = "access_id"
