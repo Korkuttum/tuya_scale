@@ -1,12 +1,13 @@
 {
   "domain": "tuya_scale",
   "name": "Tuya Smart Scale",
-  "documentation": "https://github.com/Korkuttum/tuya_scale",
-  "issue_tracker": "https://github.com/Korkuttum/tuya_scale/issues",
-  "dependencies": [],
-  "config_flow": true,
   "codeowners": ["@Korkuttum"],
+  "config_flow": true,
+  "documentation": "https://github.com/Korkuttum/tuya_scale",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Korkuttum/tuya_scale/issues",
   "requirements": ["requests>=2.25.0"],
   "version": "1.0.0",
-  "iot_class": "cloud_polling"
+  
 }
