@@ -51,6 +51,6 @@ custom_components/
 
 ## Support My Work
 
-If you find this integration helpful, you can support my work:
+If you find this integration helpful, consider supporting the development:
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/korkuttum)
+[![Become a Patreon](https://img.shields.io/badge/Become_a-Patron-red.svg?style=for-the-badge&logo=patreon)](https://www.patreon.com/c/korkuttum)
