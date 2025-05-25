@@ -4,6 +4,8 @@ This integration is designed to retrieve weight (in kilograms) and other sensor 
 
 ## Installation Methods
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Korkuttum&repository=tuya_scale&category=integration)
+
 ### Method 1: HACS Installation (Recommended)
 1. Make sure you have [HACS](https://hacs.xyz/) installed in your Home Assistant instance.
 2. Click on `HACS` in the sidebar.
