@@ -45,5 +45,12 @@ custom_components/
             ├── en.json
             └── tr.json
         └── README.md
-
 ```
+
+---
+
+## Support My Work
+
+If you find this integration helpful, you can support my work:
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/korkuttum)
