@@ -1,9 +1,10 @@
 {
   "domain": "tuya_scale",
   "name": "Tuya Smart Scale",
-  "config_flow": true,
-  "documentation": "",
+  "documentation": "https://github.com/Korkuttum/tuya_scale",
+  "issue_tracker": "https://github.com/Korkuttum/tuya_scale/issues",
   "dependencies": [],
+  "config_flow": true,
   "codeowners": ["@Korkuttum"],
   "requirements": ["requests>=2.25.0"],
   "version": "1.0.0",
