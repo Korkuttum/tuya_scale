@@ -1,4 +1,4 @@
-# Tuya Scale Custom Integration for Home Assistant
+# Tuya Smart Scale Custom Integration for Home Assistant
 
 This integration is designed to retrieve weight (in kilograms) and other sensor data from a smart scale device that is not supported by the official Tuya integration in Home Assistant.
 
