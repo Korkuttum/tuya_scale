@@ -9,7 +9,8 @@
                     "access_id": "Access ID",
                     "access_key": "Access Key",
                     "device_id": "Device ID",
-                    "region": "Region"
+                    "region": "Region",
+                    "scan_interval": "Sensor Refresh Interval (minutes)"
                 }
             }
         },
@@ -20,6 +21,17 @@
         },
         "abort": {
             "already_configured": "Device is already configured"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Tuya Scale Configuration",
+                "description": "Configure sensor refresh interval",
+                "data": {
+                    "scan_interval": "Sensor Refresh Interval (minutes)"
+                }
+            }
         }
     }
 }
