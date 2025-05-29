@@ -7,7 +7,9 @@ from homeassistant.const import (
 
 DOMAIN = "tuya_scale"
 PLATFORMS = [Platform.SENSOR]
-SCAN_INTERVAL = timedelta(minutes=1)
+# Eski SCAN_INTERVAL sabitini kaldırıp yerine aşağıdaki iki satırı ekliyoruz
+DEFAULT_SCAN_INTERVAL = 1  # Varsayılan değer (dakika cinsinden)
+CONF_SCAN_INTERVAL = "scan_interval"  # Yeni yapılandırma sabiti
 
 # Configuration
 CONF_ACCESS_ID = "access_id"
@@ -43,7 +45,7 @@ ERROR_TIMEOUT = "Connection timeout"
 
 # Current values
 CURRENT_USER = "Korkuttum"
-CURRENT_TIME = "2025-05-23 09:38:07"
+CURRENT_TIME = "2025-05-29 14:10:10"
 
 # Sensor Types
 SENSOR_TYPES = {
