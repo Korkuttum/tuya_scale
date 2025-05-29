@@ -15,10 +15,12 @@ from homeassistant.helpers.update_coordinator import (
     UpdateFailed,
 )
 from homeassistant.exceptions import ConfigEntryAuthFailed
+from homeassistant.config_entries import ConfigEntry
 
 from .const import (
     DOMAIN,
-    SCAN_INTERVAL,
+    DEFAULT_SCAN_INTERVAL,
+    CONF_SCAN_INTERVAL,
     REGIONS,
     TOKEN_PATH,
     DEVICE_DATA_PATH,
@@ -40,13 +42,21 @@ def make_api_request(url: str, headers: dict) -> requests.Response:
 class TuyaScaleDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching Tuya Scale data."""
 
-    def __init__(self, hass: HomeAssistant, config_entry) -> None:
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
         """Initialize the coordinator."""
+        # Tarama aralığını yapılandırmadan al
+        scan_interval = timedelta(
+            minutes=config_entry.options.get(
+                CONF_SCAN_INTERVAL,
+                config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
+            )
+        )
+
         super().__init__(
             hass,
             _LOGGER,
             name=DOMAIN,
-            update_interval=SCAN_INTERVAL,
+            update_interval=scan_interval,
             update_method=self._async_update_with_retry
         )
         
