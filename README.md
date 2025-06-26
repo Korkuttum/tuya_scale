@@ -57,3 +57,7 @@ custom_components/
 If you find this integration helpful, consider supporting the development:
 
 [![Become a Patreon](https://img.shields.io/badge/Become_a-Patron-red.svg?style=for-the-badge&logo=patreon)](https://www.patreon.com/c/korkuttum)
+
+## Disclaimer
+
+This integration is an independent project and is not affiliated with, endorsed by, or connected to Tuya Inc. in any way. This is a community project provided "as is" without warranty of any kind. Use at your own risk.
