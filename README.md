@@ -1,6 +1,6 @@
 # Tuya Smart Scale Custom Integration for Home Assistant
 
-<img src="https://iis-akakce.akamaized.net/p.z?%2F%2Fproductimages%2Ehepsiburada%2Enet%2Fs%2F45%2F600%2F10824497070130%2Ejpg" alt="Smart Scale" width="200"/> <img src="https://image.made-in-china.com/2f0j00aMhREsrtVIbv/Tuya-Smart-Body-Weighing-Scales.webp" alt="Smart Scale" width="200"/> <img src="https://www.expert4house.com/img/cms/Tuya%20Smart%20Home/Tuya%20Bilancia%20del%20Grasso%20Corporeo%20BMI%20Smart%20WiFi%20con%20Display%20Digitale%20a%20LED.jpg" alt="Smart Scale" width="200"/>
+<img src="https://iis-akakce.akamaized.net/p.z?%2F%2Fproductimages%2Ehepsiburada%2Enet%2Fs%2F45%2F600%2F10824497070130%2Ejpg" alt="Smart Scale" width="200"/> <img src="https://image.made-in-china.com/2f0j00aMhREsrtVIbv/Tuya-Smart-Body-Weighing-Scales.webp" alt="Smart Scale" width="200"/>
 
 
 This integration is designed to retrieve weight (in kilograms) and other sensor data from a smart scale device that is not supported by the official Tuya integration in Home Assistant.
